@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Pie Chart
+{% endblock %}
+
+{% block content %}
+
+<div class="hero">
+    <div class="container">
+        <h1> Maximizing Business 
+            Potential with Analytics and AI</h1>
+    </div>
+    <div class="container mt-5">
+        <h1>Select Category</h1>
+        <form method="post" action="{% url 'graph' %}">
+            {% csrf_token %}
+            <div class="container mt-4">
+                <div class="row">
+                    {% for category in categories %}
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="{% static 'images/graph.webp' %}" class="card-img-top" alt="Card Image">
+                            <div class="card-body">
+                                <p class="card-text">This is a description for the first card.</p>
+                                <button type="submit" name="category" value="{{category}}" class="btn btn-primary">
+                                    {{category}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

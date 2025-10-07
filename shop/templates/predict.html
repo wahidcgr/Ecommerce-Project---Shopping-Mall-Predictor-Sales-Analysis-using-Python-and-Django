@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}
+Pie Chart
+{% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="text-center">Shopping Details Form</h1>
+    <form action="{% url 'predict' %}" method="POST" class="mt-4">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" class="form-control" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" class="form-control" required min="0" max="80">
+        </div>
+
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select id="category" name="category" class="form-control" required>
+                <option value="">Select Category</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Sports">Sports</option>
+                <option value="Home & Garden">Home & Garden</option>
+                <option value="Toys">Toys</option>
+                <option value="Electronics">Electronics</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" class="form-control" required min="1" max="10">
+        </div>
+
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" id="price" name="price" class="form-control" required step="0.01" min="0" max="1000">
+        </div>
+
+        <div class="form-group">
+            <label for="payment_method">Payment Method:</label>
+            <select id="payment_method" name="payment_method" class="form-control" required>
+                <option value="">Select Payment Method</option>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debit Card">Debit Card</option>
+                <option value="Cash">Cash</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+    <br>
+<br>
+<br>
+    {% if ans_cat %}
+<h1>{{ans_cat}}</h1>
+{% endif %}
+<a href = "{% url 'analyse' %}" class="btn btn-primary">Go to Analyse</a>
+</div>
+
+
+
+{% endblock %}

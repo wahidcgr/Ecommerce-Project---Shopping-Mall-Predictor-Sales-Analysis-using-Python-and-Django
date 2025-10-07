@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}
+Info
+{% endblock %}
+{% block content %}
+
+<div class="hero">
+    <div class="container">
+        <h1>  Unleashing Growth Potential Business With Advanced Analytics And Predictive Modeling
+        </h1>
+        <p> Businesses now work differently because of the
+            application of predictive modeling and sophisticated analytics,
+            which promotes innovation and data-driven decision-making.
+            Businesses can forecast market trends, improve operational
+            efficiency, and allocate resources optimally using AI techniques
+            like machine learning. This research addresses data privacy,
+            security, and the need for qualified personnel while highlighting
+            the possibilities for incorporating data analytics into routine com
+           pany processes. The adoption of AI-driven solutions, which may
+            automate decision-making and expedite operations, can be better
+            understood by reviewing current data practices. Furthermore,
+            ethical considerations of the use of data are explored, stressing
+            the significance of privacy and responsible data handling. Key
+            business performance metrics are forecasted using a suggested
+            system that uses Python tools for data processing and display. The
+            results highlight how companies can use sophisticated analytics
+            to spur innovation and expansion, giving them a stronger
+            competitive edge in the marketplace.
+            </p>
+        <a href="{% url 'upload' %}" class="btn btn-primary btn-lg">Get Started</a>
+    </div>
+</div>
+
+
+<!-- Features Section -->
+<div class="features">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 feature-box">
+                <i class="fa fa-star fa-3x text-primary"></i>
+                <a href="{% static '.\paper.pdf' %}"  type="application/pdf" target="_blank"><h3>Paper</h3></a>
+                <p>Paper for this project.</p>
+            </div>
+            <div class="col-md-4 feature-box">
+                <i class="fa fa-cogs fa-3x text-primary"></i>
+                <a href="{% static '.\Sathish Base paper.pdf' %}"  type="application/pdf" target="_blank"><h3>Base Paper</h3></a>
+                <p>Base Paper for this project.</p>
+            </div>
+            <div class="col-md-4 feature-box">
+                <i class="fa fa-heart fa-3x text-primary"></i>
+                <a href="{% static '.\ppt.pdf' %}"  type="application/pdf" target="_blank"><h3>PPT</h3></a>
+                <p>PPT for this project.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

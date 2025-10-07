@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}
+Info
+{% endblock %}
+{% block content %}
+
+
+<div class="hero">
+    <div class="container">
+        <h1> Maximizing Business 
+            Potential with Analytics and AI</h1>
+    </div>
+
+    
+    <div class="container mt-4">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card">
+              <img src="{% static '.\images\bar chart.png' %}" class="card-img-top"  height=230px alt="Card Image">
+              <div class="card-body">
+                <p class="card-text">Analyse the Data with the Bar chart</p>
+                <a href="?action=bar" class="btn btn-primary">Bar Chart</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+              <div class="card">
+                  <img src="{% static '.\images\graph.webp' %}" class="card-img-top" height=230px alt="Card Image">
+              <div class="card-body">
+                <p class="card-text">Analyse the Data with the Graph chart</p>
+                <a href="?action=graph"  class="btn btn-primary">Graph Chart</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card">
+                <img src="{% static '.\images\pie.jpg' %}" class="card-img-top" height=230px alt="Card Image">
+              <div class="card-body">
+                <p class="card-text">Analyse the Data with the Pie chart</p>
+                <a href="?action=pie_chart"  class="btn btn-primary">Pie Chart</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-12" style="padding-top:50px;"></div>
+            <div class="card">
+                <img src="{% static '.\images\predict.jpg' %}" class="card-img-top" height=230px alt="Card Image">
+              <div class="card-body">
+                <p class="card-text">Forecasting the Shopping Mall</p>
+                <a href="?action=predict"  class="btn btn-primary">Predict</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

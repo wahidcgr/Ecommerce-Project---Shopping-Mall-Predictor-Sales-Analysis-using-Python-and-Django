@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}
+Pie Chart
+{% endblock %}
+{% block content %}
+
+<div class="hero">
+    <div class="container">
+        <h1> Maximizing Business 
+            Potential with Analytics and AI</h1>
+            <h4 style="color:red;">Select Date from 01-01-2023 To 19-09-2024</h4>
+    </div>
+
+<div class="container mt-5">
+    <h1>Select Filters</h1>
+    {% if min_date %}
+    <p>
+        Select the date filter between {{min_date}} to {{max_date}}
+    </p>
+    {% endif %}
+    <form method="post" action="{% url 'pie_chart' %}" >
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="from_date" class="form-label">From Date:</label>
+            <input type="date" id="from_date" name="from_date" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="to_date" class="form-label">To Date:</label>
+            <input type="date" id="to_date" name="to_date" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="category" class="form-label">Category:</label>
+            <select id="category" name="category" class="form-select">
+                <option value="">--Select Category--</option>
+                <option value="Gender">Gender</option>
+                <option value="Payment Method">Payment Method</option>
+                <option value="Shopping Mall">Shopping Mall</option>
+                <option value="Quantity">Quantity</option>
+                <option value="Category">Category</option>
+                <option value="Age">Age</option>
+
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">Filter</button>
+    </form>
+
+
+    {% if table %}
+    <div style='padding-left:50px;'>
+
+        {% if generated %}
+        <h3>The Invoice Date from {{from_date}} To {{to_date}}</h3>
+        {% endif %}
+
+
+
+        {% if size %}
+        <h1>Filtered Data Size : {{size}}</h1>
+        {% endif %}
+        <p>DataFrame Table (Sample Data)</p>
+        <!-- Render the HTML table -->
+        <div style='padding-left:50px;'>
+            {{ table|safe }}
+        </div>
+        <br>
+        <br>
+
+    </div>
+    {% endif %}
+    <br>
+    {% if generated %}
+    <div style="width: 50%; margin: auto;">
+        <canvas id="myPieChart"></canvas>
+    </div>
+    {% endif %}
+    <br>
+
+    <a href = "{% url 'analyse' %}" class="btn btn-primary">Go to Analyse</a>
+</div>
+
+<script>
+    // Data for the pie chart
+    label_name = {{labels | safe}}
+    data_lst = {{ sizes}} 
+    backgroundColor_array =  [
+    '#FF6384',  // Soft Red
+    '#36A2EB',  // Light Blue
+    '#FFCE56',  // Yellow
+    '#4BC0C0',  // Teal
+    '#9966FF',  // Purple
+    '#FF9F40',  // Orange
+    '#E7E9ED',  // Light Grey
+    '#FFCD56',  // Gold
+    '#C9CBCF',  // Silver
+    '#F7464A'   // Deep Red
+]
+
+    const data = {
+        labels: label_name, // Label names for the pie chart
+        datasets: [{
+            data: data_lst,  // Data values (e.g., 300 for Red, 50 for Blue, etc.)
+            backgroundColor: backgroundColor_array.slice(0,data_lst.length) ,  // Background colors for each slice
+            hoverBackgroundColor: backgroundColor_array.slice(0,data_lst.length),  // Colors when hovered
+        }]
+    };
+
+    // Configuration object for the pie chart
+    const config = {
+        type: 'pie',  // Specifies the type of chart (Pie)
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',  // Position of the legend (top, bottom, left, right)
+                },
+                tooltip: {
+                    enabled: true  // Enable tooltips
+                }
+            }
+        }
+    };
+
+    // Rendering the pie chart
+    const ctx = document.getElementById('myPieChart').getContext('2d');
+    new Chart(ctx, config);  // Initialize the Chart.js pie chart
+</script>
+
+
+{% endblock %}
